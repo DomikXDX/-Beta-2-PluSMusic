@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PluSMusic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Шапка (10 и 12) -->
+        <header class="header">
+            <div class="logo">PluSMusic</div>
+            <button id="addBtn" class="rainbow-btn">
+                <span>+ Добавить музыку</span>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <!-- Левая часть: Плеер (1, 2, 3, 4, 5, 6, 7, 8, 9) -->
+            <section class="player-section">
+                <!-- Обложка и прогресс-бар при наведении -->
+                <div class="cover-wrapper">
+                    <img id="coverImage" src="https://via.placeholder.com/500/181818/888888?text=Нет+обложки" alt="Обложка">
+                    <div class="progress-overlay">
+                        <span id="currentTimeDisplay" class="time-display">0:00</span>
+                        <input type="range" id="progressBar" min="0" max="100" value="0" step="0.1">
+                        <span id="durationDisplay" class="time-display">0:00</span>
+                    </div>
+                </div>
+
+                <!-- Информация о треке -->
+                <div class="track-info">
+                    <h2 id="currentTitle">Название трека</h2>
+                    <h3 id="currentArtist">Исполнитель</h3>
+                </div>
+
+                <!-- Управление -->
+                <div class="controls">
+                    <button id="prevBtn" class="control-btn" title="Предыдущий трек">⏮</button>
+                    <button id="repeatBtn" class="control-btn" title="Повтор трека">🔁</button>
+                    <button id="playBtn" class="play-btn" title="Играть/Пауза">▶</button>
+                    <button id="lyricsBtn" class="control-btn" title="Текст (в разработке)">📝</button>
+                    <button id="nextBtn" class="control-btn" title="Следующий трек">⏭</button>
+                </div>
+                
+                <audio id="audioPlayer"></audio>
+            </section>
+
+            <!-- Правая часть: Список треков (11) -->
+            <section class="playlist-section">
+                <div class="playlist-header">
+                    <h2>Моя медиатека</h2>
+                </div>
+                <ul id="playlist" class="playlist">
+                    <li class="empty-state">
+                        <div class="empty-icon">🎵</div>
+                        Здесь пока пусто. Добавь свои любимые треки!
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <!-- Модальное окно добавления трека -->
+    <div id="addModal" class="modal hidden">
+        <div class="modal-content rainbow-border">
+            <div class="modal-header">
+                <h2>Загрузка трека</h2>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Название трека</label>
+                    <input type="text" id="songTitle" placeholder="Например: Кукла колдуна">
+                </div>
+                <div class="input-group">
+                    <label>Исполнитель</label>
+                    <input type="text" id="songArtist" placeholder="Например: Король и Шут">
+                </div>
+                <div class="input-group file-group">
+                    <label>Аудиофайл (.mp3, .wav)</label>
+                    <input type="file" id="songFile" accept="audio/*">
+                </div>
+                <div class="input-group file-group">
+                    <label>Обложка (картинка)</label>
+                    <input type="file" id="coverFile" accept="image/*">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelBtn" class="ghost-btn">Отмена</button>
+                <button id="saveBtn" class="rainbow-btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

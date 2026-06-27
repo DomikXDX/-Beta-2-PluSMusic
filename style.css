@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --bg-main: #0a0a0a;
+    --bg-secondary: #121212;
+    --bg-hover: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #a7a7a7;
+    /* Радужный градиент */
+    --rainbow: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes rainbow-anim { 
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+/* --- ЛОГОТИП (ИСПРАВЛЕНО) --- */
+.logo {
+    font-size: 32px;
+    font-weight: 700;
+    background: var(--rainbow);
+    background-size: 300% 300%;
+    animation: rainbow-anim 6s ease infinite;
+    
+    /* Стандартные свойства для радужного текста */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    letter-spacing: -1px;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Кнопки и модалки */
+.rainbow-btn, .modal-content.rainbow-border {
+    position: relative;
+    background: var(--bg-secondary);
+    border: none;
+    border-radius: 18px;
+    padding: 2px;
+}
+
+.rainbow-btn::before, .modal-content.rainbow-border::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: var(--rainbow);
+    background-size: 300% 300%;
+    animation: rainbow-anim 6s ease infinite;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+/* Остальные стили */
+.main-content { display: flex; gap: 40px; flex: 1; overflow: hidden; }
+.player-section { flex: 0 0 400px; display: flex; flex-direction: column; align-items: center; }
+.cover-wrapper { width: 100%; aspect-ratio: 1/1; border-radius: 16px; overflow: hidden; position: relative; }
+.cover-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+.progress-overlay {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 30px 15px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.cover-wrapper:hover .progress-overlay { opacity: 1; }
+
+input[type="range"] { flex: 1; cursor: pointer; }
+
+.playlist-section { flex: 1; background: var(--bg-secondary); border-radius: 16px; overflow-y: auto; }
+.playlist li { display: flex; align-items: center; padding: 15px; cursor: pointer; }
+.playlist li:hover { background: var(--bg-hover); }
+
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
